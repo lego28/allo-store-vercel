@@ -11,7 +11,7 @@ export async function GET() {
       orderBy: { name: "asc" },
     });
 
-    const response: WarehouseResponse[] = warehouses.map((w) => ({
+    const response: WarehouseResponse[] = warehouses.map((w: any) => ({
       id: w.id,
       name: w.name,
       location: w.location,
