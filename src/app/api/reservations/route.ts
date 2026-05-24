@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
         try {
           const reservation = await withLock(lockKey, async () => {
             // Use a raw transaction with FOR UPDATE to lock the stock row
-            const result = await prisma.$transaction(async (tx) => {
+            const result = await prisma.$transaction(async (tx: any) => {
               // Lock the stock row for this SKU
               const stocks = await tx.$queryRaw<
                 Array<{
