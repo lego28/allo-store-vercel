@@ -80,7 +80,7 @@ export async function POST(
         }
 
         // Confirm: decrement total stock and reserved, mark confirmed
-        const updated = await prisma.$transaction(async (tx) => {
+        const updated = await prisma.$transaction(async (tx: any) => {
           const confirmed = await tx.reservation.update({
             where: { id },
             data: { status: "CONFIRMED" },
