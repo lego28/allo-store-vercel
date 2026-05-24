@@ -6,7 +6,6 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    await releaseExpiredReservations();
 
     const products: any[] = await prisma.product.findMany({
       include: {

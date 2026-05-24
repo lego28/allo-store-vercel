@@ -5,7 +5,6 @@
 
 import { prisma } from "./prisma";
 
-export async function releaseExpiredReservations(): Promise<number> {
   const now = new Date(Date.now() - 60 * 1000);
 console.log("NOW:", now.toISOString())
 
