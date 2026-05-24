@@ -8,7 +8,6 @@ export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    // Lazy expiry cleanup before reading availability
     await releaseExpiredReservations();
 
     const products = await prisma.product.findMany({
@@ -22,7 +21,7 @@ export async function GET() {
       orderBy: { name: "asc" },
     });
 
-    const response: ProductWithStock[] = products.map((p: typeof products[0]) => ({
+    const response = products.map((p) => ({
       id: p.id,
       name: p.name,
       description: p.description,
@@ -36,7 +35,7 @@ export async function GET() {
         reserved: s.reserved,
         available: Math.max(0, s.total - s.reserved),
       })),
-    }));
+    })) satisfies ProductWithStock[];
 
     return NextResponse.json(response);
   } catch (err) {
