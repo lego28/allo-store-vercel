@@ -8,7 +8,7 @@ export async function GET() {
   try {
     await releaseExpiredReservations();
 
-    const products = await prisma.product.findMany({
+    const products: any[] = await prisma.product.findMany({
       include: {
         stock: {
           include: {
@@ -16,16 +16,18 @@ export async function GET() {
           },
         },
       },
-      orderBy: { name: "asc" },
+      orderBy: {
+        name: "asc",
+      },
     });
 
-    const response = products.map((p) => ({
+    const response = products.map((p: any) => ({
       id: p.id,
       name: p.name,
       description: p.description,
       imageUrl: p.imageUrl,
       price: p.price,
-      stock: p.stock.map((s) => ({
+      stock: p.stock.map((s: any) => ({
         warehouseId: s.warehouseId,
         warehouseName: s.warehouse.name,
         warehouseLocation: s.warehouse.location,
@@ -38,6 +40,7 @@ export async function GET() {
     return NextResponse.json(response);
   } catch (err) {
     console.error("[GET /api/products]", err);
+
     return NextResponse.json(
       { error: "Failed to fetch products" },
       { status: 500 }
