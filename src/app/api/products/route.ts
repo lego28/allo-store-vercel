@@ -1,8 +1,6 @@
-// src/app/api/products/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { releaseExpiredReservations } from "@/lib/expiry";
-import type { ProductWithStock } from "@/lib/schemas";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +33,7 @@ export async function GET() {
         reserved: s.reserved,
         available: Math.max(0, s.total - s.reserved),
       })),
-    })) satisfies ProductWithStock[];
+    }));
 
     return NextResponse.json(response);
   } catch (err) {
