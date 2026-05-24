@@ -360,3 +360,5 @@ export default function ReservationPage({
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";

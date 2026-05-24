@@ -281,3 +281,5 @@ export default function ProductsPage() {
     </>
   );
 }
+
+export const dynamic = "force-dynamic";
