@@ -116,6 +116,7 @@ export async function POST(req: NextRequest) {
 
               // Create the reservation
               const expiresAt = new Date(
+console.log("EXPIRES_AT:", expiresAt.toISOString())
                 Date.now() + RESERVATION_TTL_MINUTES * 60 * 1000
               );
 
