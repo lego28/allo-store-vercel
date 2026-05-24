@@ -20,7 +20,7 @@ export default async function ReservationsPage() {
 
   try {
     const rows = await getReservations();
-    reservations = rows.map((reservation) => ({
+    reservations = rows.map((reservation: any) => ({
       id: reservation.id,
       productName: reservation.product.name,
       warehouseName: reservation.warehouse.name,
