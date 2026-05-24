@@ -22,7 +22,7 @@ export async function GET() {
       orderBy: { name: "asc" },
     });
 
-    const response: ProductWithStock[] = products.map((p) => ({
+    const response: ProductWithStock[] = products.map((p: typeof products[0]) => ({
       id: p.id,
       name: p.name,
       description: p.description,
