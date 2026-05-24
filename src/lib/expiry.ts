@@ -6,7 +6,6 @@
 import { prisma } from "./prisma";
 
   const now = new Date(Date.now() - 60 * 1000);
-console.log("NOW:", now.toISOString())
 
   // Find all expired pending reservations
   const expired = await prisma.reservation.findMany({
