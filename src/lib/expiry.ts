@@ -26,7 +26,7 @@ export async function releaseExpiredReservations(): Promise<number> {
 
   // For each expired reservation, update status + decrement reserved count atomically
   await prisma.$transaction(
-    expired.map((r) =>
+    expired.map((r: any) =>
       prisma.$executeRaw`
         UPDATE "Reservation"
         SET status = 'RELEASED', "updatedAt" = NOW()
