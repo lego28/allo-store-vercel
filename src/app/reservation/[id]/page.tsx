@@ -86,15 +86,6 @@ export default function ReservationPage({
   }, [id]);
 
   useEffect(() => { fetchReservation(); }, [fetchReservation]);
-
-  // Auto-mark expired in UI if timer hits 0 and status is still pending
-  useEffect(() => {
-    if (expired && reservation?.status === "PENDING") {
-      setReservation((r) => r ? { ...r, status: "RELEASED" } : r);
-      setActionError("Your reservation has expired. The items have been returned to stock.");
-    }
-  }, [expired, reservation?.status]);
-
   const handleConfirm = async () => {
     setActionLoading("confirm");
     setActionError(null);
